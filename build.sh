@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 PACKAGE_NAME="sbs-firewall"
-PACKAGE_VERSION="0.1.0"
+PACKAGE_VERSION="0.1.1"
 PACKAGE_DESCRIPTION="TODO"
 PACKAGE_URL="https//github.com/sasanarakkha/sbs-firewall"
 PACKAGE_DEPENDS="firewall4 libc luci-base rpcd-mod-ucode ucode ucode-mod-debug ucode-mod-fs ucode-mod-log ucode-mod-socket ucode-mod-struct"
