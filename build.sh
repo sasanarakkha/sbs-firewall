@@ -7,7 +7,7 @@ PACKAGE_NAME="sbs-firewall"
 PACKAGE_VERSION="0.1.0"
 PACKAGE_DESCRIPTION="TODO"
 PACKAGE_URL="https//github.com/sasanarakkha/sbs-firewall"
-PACKAGE_DEPENDS="libc luci-base rpcd-mod-ucode ucode ucode-mod-debug ucode-mod-fs ucode-mod-log ucode-mod-socket ucode-mod-struct"
+PACKAGE_DEPENDS="firewall4 libc luci-base rpcd-mod-ucode ucode ucode-mod-debug ucode-mod-fs ucode-mod-log ucode-mod-socket ucode-mod-struct"
 
 #
 # Download/build apk-tools
@@ -69,6 +69,7 @@ cat >dist/ipk/control/postinst-pkg <<'EOF'
   rm -f /tmp/luci-indexcache.*
   rm -rf /tmp/luci-modulecache/
   /etc/init.d/rpcd reload 2>/dev/null
+  /etc/init.d/firewall restart 2>/dev/null
   exit 0
 }
 EOF
