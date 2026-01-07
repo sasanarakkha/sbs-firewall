@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ subtitle }} - {{ title }}</title>
+    <style>
+      {% capture css %}{% include "main.scss" %}{% endcapture %}
+      {{ css | sass }}
+    </style>
+  </head>
+  <body>
+    <header class="container">
+      <h1>{{ title }}</h1>
+      <h2>{{ subtitle }}</h2>
+    </header>
+    <main class="container">{{ content }}</main>
+    {% include "footer.html" %}
+    <script>
+      {% include "main.js" %}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": [
+        "*.uc",
+        "rootfs/usr/bin/sbs",
+        "rootfs/usr/libexec/sbs/sbs_poller",
+        "rootfs/usr/share/rpcd/ucode/*",
+        "rootfs/www/cgi-bin/sbs/*"
+      ],
+      "options": {
+        "parser": "babel",
+        "trailingComma": "none"
+      }
+    }
+  ]
+}

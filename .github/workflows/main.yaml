@@ -1,0 +1,36 @@
+name: main
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+      - name: install dependencies
+        run: |
+          sudo apt-get install -y build-essential meson ninja-build nodejs npm
+          npm install -g pnpm
+      - name: build
+        run: ./build.sh
+      - name: upload artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: packages
+          path: dist
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: download artifacts
+        if: github.ref_type == 'tag'
+        uses: actions/download-artifact@v7
+        with:
+          path: dist
+      - name: publish release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*

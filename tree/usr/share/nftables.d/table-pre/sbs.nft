@@ -1,0 +1,41 @@
+set sbs_local_blocklist_ether {
+  type ether_addr
+  flags dynamic,timeout
+}
+
+set sbs_local_allowlist_ether {
+  type ether_addr
+  flags dynamic,timeout
+}
+
+set sbs_tickets_ether {
+  type ether_addr
+  flags dynamic,timeout
+  timeout 24h
+}
+
+set sbs_remote_allowlist_ipv4 {
+  type ipv4_addr
+  flags dynamic,timeout
+  # timeout 15m
+}
+
+# TODO: The sync approach creates instability problems
+#
+#set sbs_remote_allowlist_ipv4_sync {
+#  type ipv4_addr
+#  flags dynamic,timeout
+#}
+
+set sbs_remote_allowlist_ipv6 {
+  type ipv6_addr
+  flags dynamic,timeout
+  # timeout 15m
+}
+
+# TODO: The sync approach creates instability problems
+#
+#set sbs_remote_allowlist_ipv6_sync {
+#  type ipv6_addr
+#  flags dynamic,timeout
+#}

@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@picocss/pico": "^2.1.1",
+    "html-minifier-terser": "^7.2.0",
+    "prettier": "^3.7.4",
+    "sass": "^1.97.2"
+  },
+  "scripts": {
+    "build-html": "eleventy",
+    "dist-clean": "rm -rf apk-tools dist node_modules pnpm-lock.yaml tree/www/tickets",
+    "prettier": "prettier --write .",
+    "serve": "eleventy --serve"
+  },
+  "type": "module"
+}

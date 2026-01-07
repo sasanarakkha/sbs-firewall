@@ -1,0 +1,38 @@
+ether saddr @sbs_local_blocklist_ether \
+  counter jump reject_to_wan \
+  comment "SBS: 1. Reject from local blocklist"
+
+ether saddr @sbs_local_allowlist_ether \
+  counter jump accept_to_wan \
+  comment "SBS: 2. Allow from local allowlist"
+
+ether saddr @sbs_tickets_ether \
+  counter jump accept_to_wan \
+  comment "SBS: 3. Allow from tickets"
+
+ip daddr @sbs_remote_allowlist_ipv4 \
+  counter jump accept_to_wan \
+  comment "SBS: 4. Allow to remote allowlist"
+
+ip6 daddr @sbs_remote_allowlist_ipv6 \
+  counter jump accept_to_wan \
+  comment "SBS: 4. Allow to remote allowlist"
+
+icmp type echo-request \
+  counter jump accept_to_wan \
+  comment "SBS: 5. Allow IPv4 ping and ICMPv6"
+
+icmpv6 type \
+  { destination-unreachable, time-exceeded, echo-request, echo-reply, \
+    nd-router-solicit, nd-router-advert } \
+  counter jump accept_to_wan \
+  comment "SBS: 5. Allow IPv4 ping and ICMPv6"
+
+icmpv6 type . icmpv6 code \
+  { packet-too-big . 0, parameter-problem . 0, nd-neighbor-solicit . 0, \
+    nd-neighbor-advert . 0, parameter-problem . 1 } \
+  counter jump accept_to_wan \
+  comment "SBS: 5. Allow IPv4 ping and ICMPv6"
+
+counter jump reject_to_wan \
+  comment "SBS: 6. Reject (default)"

@@ -1,0 +1,21 @@
+#!/bin/sh /etc/rc.common
+# shellcheck disable=SC2034
+
+NAME=sbs
+START=99
+STOP=01
+USE_PROCD=1
+LOG_TAG=sbs
+SBS_BIN=/usr/bin/sbs
+
+reload_service() {
+  "$SBS_BIN" process_configs >/dev/null
+}
+
+start_service() {
+  reload_service
+  procd_open_instance
+  procd_set_param command "$SBS_BIN" poll_domains info
+  procd_set_param respawn
+  procd_close_instance
+}

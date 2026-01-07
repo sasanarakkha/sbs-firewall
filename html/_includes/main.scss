@@ -1,0 +1,25 @@
+@use "pico" with (
+  $theme-color: "yellow",
+  $modules: (
+    "content/code": false,
+    "forms/input-color": false,
+    "forms/input-date": false,
+    "forms/input-file": false,
+    "forms/input-range": false,
+    "forms/input-search": false,
+    "components/accordion": false,
+    "components/dropdown": false,
+    "components/nav": false,
+    "components/progress": false,
+    "components/tooltip": false,
+    "utilities/accessibility": false,
+    "utilities/reduce-motion": false,
+  )
+);
+
+:root {
+  --pico-font-size: 125%;
+  --pico-border-radius: 1rem;
+  --pico-form-element-spacing-vertical: 1rem;
+  --pico-form-element-spacing-horizontal: 1.5rem;
+}

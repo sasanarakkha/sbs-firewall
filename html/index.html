@@ -1,0 +1,90 @@
+---
+layout: layout.html
+title: SBS Firewall
+subtitle: Tickets
+---
+
+<dialog class="success">
+  <article>
+    <h2>🚀 Success</h2>
+    <p></p>
+    <footer>
+      <button>Close</button>
+    </footer>
+  </article>
+</dialog>
+
+<dialog class="error">
+  <article>
+    <h2>⚠️ Error</h2>
+    <p></p>
+    <footer>
+      <button>Close</button>
+    </footer>
+  </article>
+</dialog>
+
+<h3>Active Tickets</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Ethernet (MAC) address</th>
+      <th scope="col">Expiration</th>
+      <th scope="col">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="3"><p aria-busy="true">Loading...</p></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Ticket Bypass</h3>
+
+<h4>
+  ⚠️
+  <span style="color: #800">Only for <em>technical problems</em>.</span>
+  Remember to first…
+</h4>
+<p>
+  <a href="http://filesrv1.sbs.rocks:8888/ticket/requestor" target="_blank"
+    ><button>Request a Ticket</button></a
+  >
+</p>
+
+<form action="../cgi-bin/sbs/tickets" method="POST">
+  <label style="margin-bottom: 2.5em">
+    <input name="agree" type="checkbox" required />
+    I have requested, or tried to request, a ticket.
+  </label>
+  <label
+    >✍️ Brief explanation
+    <input
+      name="comment"
+      type="text"
+      placeholder="What did not work?"
+      required
+    />
+  </label>
+  <label
+    >🕑 Duration
+    <select name="duration" required>
+      <option selected disabled value="">Select time…</option>
+      <option value="300">5 minutes</option>
+      <option value="2700">45 minutes</option>
+    </select>
+  </label>
+  <input type="submit" value="Add Ticket Bypass" />
+  <details>
+    <summary role="button" class="outline">Advanced</summary>
+    <label style="margin-top: 1em"
+      >💻 IP or ethernet address
+      <input name="addr" type="text" aria-describedby="addr-helper" />
+      <small id="addr-helper"
+        >Leave this blank to use the current device.</small
+      >
+    </label>
+  </details>
+</form>

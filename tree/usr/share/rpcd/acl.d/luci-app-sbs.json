@@ -1,0 +1,37 @@
+{
+  "luci-app-sbs": {
+    "description": "Grant access to SBS configuration",
+    "read": {
+      "file": {
+        "/etc/sbs/local_allowlist_ether.conf": ["read"],
+        "/etc/sbs/local_blocklist_ether.conf": ["read"],
+        "/etc/sbs/remote_allowlist_domain.conf": ["read"]
+      },
+      "ubus": {
+        "file": ["read"],
+        "sbs": [
+          "get_nft_set",
+          "get_nft_set_names",
+          "get_nft_sets",
+          "get_tickets"
+        ]
+      }
+    },
+    "write": {
+      "file": {
+        "/etc/sbs/local_allowlist_ether.conf": ["write"],
+        "/etc/sbs/local_blocklist_ether.conf": ["write"],
+        "/etc/sbs/remote_allowlist_domain.conf": ["write"]
+      },
+      "ubus": {
+        "file": ["write"],
+        "sbs": [
+          "add_ticket",
+          "delete_ticket",
+          "process_config",
+          "process_configs"
+        ]
+      }
+    }
+  }
+}

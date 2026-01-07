@@ -1,0 +1,7 @@
+#!/usr/bin/ucode --
+
+"use strict";
+
+import { main } from "../share/ucode/sbs/cli.uc";
+
+exit(main(ARGV));
