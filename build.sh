@@ -110,7 +110,7 @@ mkdir -p dist/apk/files/lib/apk/packages
 find dist/apk/files -type f,l -printf '/%P\n' |
   sort >"dist/apk/files/lib/apk/packages/$PACKAGE_NAME.list"
 
-cat >dist/apk/post-install <<EOF
+cat >dist/apk/files/post-install <<EOF
 #!/bin/sh
 [ "\${IPKG_NO_SCRIPT}" = "1" ] && exit 0
 [ -s \${IPKG_INSTROOT}/lib/functions.sh ] || exit 0
@@ -121,24 +121,26 @@ add_group_and_user
 default_postinst
 $(postinst)
 EOF
-chmod 755 dist/apk/post-install
+chmod 755 dist/apk/files/post-install
 
-cat >dist/apk/post-upgrade <<EOF
+cat >dist/apk/files/post-upgrade <<EOF
 #!/bin/sh
 export PKG_UPGRADE=1
-$(cat dist/apk/post-install)
+$(cat dist/apk/files/post-install)
 EOF
-chmod 755 dist/apk/post-upgrade
+chmod 755 dist/apk/files/post-upgrade
 
 fakeroot apk-tools/build/src/apk mkpkg \
   --info "name:$PACKAGE_NAME" \
   --info "version:$PACKAGE_VERSION" \
   --info "description:$PACKAGE_DESCRIPTION" \
-  --info "url:$PACKAGE_URL" \
+  --info "origin:$PACKAGE_URL" \
+  --info "url:" \
   --info "depends:$PACKAGE_DEPENDS" \
-  --info "arch:all" \
-  --script "post-install:dist/apk/post-install" \
-  --script "post-upgrade:dist/apk/post-upgrade" \
+  --info "arch:noarch" \
+  --info "provides:" \
+  --script "post-install:dist/apk/files/post-install" \
+  --script "post-upgrade:dist/apk/files/post-upgrade" \
   --files "dist/apk/files" \
   --output "dist/${PACKAGE_NAME}-${PACKAGE_VERSION}.apk"
 
