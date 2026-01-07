@@ -70,6 +70,7 @@ cat >dist/ipk/control/postinst-pkg <<'EOF'
   rm -rf /tmp/luci-modulecache/
   /etc/init.d/rpcd reload 2>/dev/null
   /etc/init.d/firewall restart 2>/dev/null
+  /etc/init.d/sbs reload
   exit 0
 }
 EOF
