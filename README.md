@@ -1,6 +1,6 @@
 # sbs-firewall
 
-TODO description
+Internet access controls for a monastery.
 
 ## Build
 
